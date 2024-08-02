@@ -1,0 +1,67 @@
+
+There are 2 ways to do-
+    1. remote widget string
+    //pass a widget as string from API
+    //just install dependencies and add FlutterEvalStringExample() widget
+
+    2. server .evc file
+    //follow below steps
+
+
+1. Add dependencies
+    flutter_eval: ^0.7.6
+    dart_eval: ^0.7.9
+
+2. Add HotSwapLoader Root Widget
+    HotSwapLoader(
+      uri: 'asset:packages/update.evc',
+      child: GetMaterialApp()
+    )
+
+    create a folder in root of project and allow access in pubspec.yaml file
+    in later steps we will generate update.evc and put inside it
+
+
+3. Add HotSwap widget
+
+    Default widget
+    //when there is no dynamic widget
+
+    ID 
+    //it should match with id of dynamic widget
+
+    Argument that we will pass to dynamic widget
+    //we have to preplan this
+
+4. Create a package inside the project
+    flutter create --template=package remote_update
+
+5. Download a flutter_eval.json file from the package provider, search in github or pubdev
+    paste inside
+    remote_update
+        ├── .dart_eval
+        └── bindings
+           └── flutter_eval.json
+
+6. Add dependency in remote_update repo pubspec.yaml file
+    eval_annotation: ^0.7.0
+
+7. Add dynamic widget in the remote_update repo 
+
+    @RuntimeOverride('#myHomePage')
+    Widget myHomePageUpdate(BuildContext context) {
+        return Scaffold(
+            ...
+        )
+    }
+
+8. Install dart_eval globally
+    dart pub global activate dart_eval
+
+9. Generate .evc file
+
+    dart_eval compile -o any_name.evc
+
+    search any_name.evc file in remote_update repo and paste in the packages/
+
+
