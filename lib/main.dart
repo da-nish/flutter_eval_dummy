@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_eval/flutter_eval.dart';
 import 'package:flutter_eval_dummy/home_screen.dart';
 
 void main() {
@@ -10,13 +11,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return HotSwapLoader(
+      uri: 'asset:packages/remote_widget.evc',
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: const MyHomePage(title: 'Flutter Demo Home Page'),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
