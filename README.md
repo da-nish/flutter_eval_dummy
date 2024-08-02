@@ -1,16 +1,80 @@
-# flutter_eval_dummy
+# Implement flutter_eval using 2 ways
 
-A new Flutter project.
+1. Remote widget string
+   
+   `pass a widget as string from API`
 
-## Getting Started
+   `just install dependencies and add FlutterEvalStringExample() widget`
 
-This project is a starting point for a Flutter application.
+3. Server .evc file
+   
+   `follow below steps`
 
-A few resources to get you started if this is your first Flutter project:
+## Implement remote widget via .evc file
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. Add dependencies
+   
+    `flutter_eval: ^0.7.6`
+   
+    `dart_eval: ^0.7.9`
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+3. Add HotSwapLoader Root Widget
+   ```
+    HotSwapLoader(
+      uri: 'asset:packages/update.evc',
+      child: GetMaterialApp()
+    )
+   ```
+
+    create a folder in root of project and allow access in pubspec.yaml file
+    in later steps we will generate update.evc and put inside it
+
+
+5. Add HotSwap widget
+
+    Default widget
+    >when there is no dynamic widget
+
+    ID 
+    >it should match with id of dynamic widget
+
+    Argument that we will pass to dynamic widget
+    >we have to preplan this
+
+6. Create a package inside the project
+    flutter create --template=package remote_update
+
+7. Download a flutter_eval.json file from the package provider, search in github or pubdev
+    paste inside
+    ```
+    remote_update
+        ├── .dart_eval
+        └── bindings
+           └── flutter_eval.json
+    ```
+
+8. Add dependency in remote_update repo pubspec.yaml file
+    `eval_annotation: ^0.7.0`
+
+9. Add dynamic widget in the remote_update repo 
+
+    ```
+    @RuntimeOverride('#myHomePage')
+    Widget myHomePageUpdate(BuildContext context) {
+        return Scaffold(
+            ...
+        )
+    }
+    ```
+
+10. Install dart_eval globally
+    `dart pub global activate dart_eval`
+
+11. Generate .evc file
+
+    `dart_eval compile -o any_name.evc`
+
+    search any_name.evc file in remote_update repo and paste in the packages/
+
+    **Now run the project, you will be see the wiget that defined in 9th step
+    if you stuck somewhere check the repo code**
