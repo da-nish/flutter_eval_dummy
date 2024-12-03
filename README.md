@@ -2,17 +2,17 @@
 
 1. Remote widget string
    
-   `pass a widget as string from API`
+   `Pass widget code as a string from API`
 
-   `just install dependencies and add FlutterEvalStringExample() widget`
+   `Install dependencies and add FlutterEvalStringExample() widget`
 
-3. Server .evc file
+3. Server update.evc file
    
    `follow below steps`
 
 ## Implement remote widget via .evc file
 
-1. Add dependencies
+1. Add dependencies in main project
    
     `flutter_eval: ^0.7.6`
    
@@ -30,7 +30,7 @@
     in later steps we will generate update.evc and put inside it
 
 
-5. Add HotSwap widget
+5. Add HotSwap() widget
 
     Default widget
     >when there is no dynamic widget
@@ -49,8 +49,8 @@
     ```
     remote_update
         ├── .dart_eval
-        └── bindings
-           └── flutter_eval.json
+           └── bindings
+              └── flutter_eval.json
     ```
 
 8. Add dependency in remote_update repo pubspec.yaml file
