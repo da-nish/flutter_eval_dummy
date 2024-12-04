@@ -70,7 +70,7 @@
 10. Install dart_eval globally
     `dart pub global activate dart_eval`
 
-11. Generate .evc file
+11. Generate .evc file, run below command inside "remote_update" package repo, from main repo it will not work
 
     `dart_eval compile -o any_name.evc`
 
