@@ -44,7 +44,7 @@
 6. Create a package inside the project
     flutter create --template=package remote_update
 
-7. Download a flutter_eval.json file from the package provider, search in github or pubdev
+7. Download a flutter_eval.json file from the package provider, search in github or pubdev, there should not be more than 1 file
     paste inside
     ```
     remote_update
